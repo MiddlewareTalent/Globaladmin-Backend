@@ -27,6 +27,7 @@ public class CompanyDetails {
     private boolean Tasks;
     private boolean LeaveManagement;
     private boolean TimeSheet;
+    private boolean MyCollegues;
 
     public Long getId() {
         return id;
@@ -130,5 +131,17 @@ public class CompanyDetails {
 
     public void setTimeSheet(boolean timeSheet) {
         TimeSheet = timeSheet;
+    }
+
+    public void isMyCollegues(boolean myCollegues) {
+        MyCollegues = myCollegues;
+    }
+
+    public boolean isMyCollegues() {
+        return MyCollegues;
+    }
+
+    public void setMyCollegues(boolean myCollegues) {
+        MyCollegues = myCollegues;
     }
 }
