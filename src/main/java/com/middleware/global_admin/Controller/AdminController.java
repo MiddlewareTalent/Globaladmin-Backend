@@ -1,15 +1,15 @@
 package com.middleware.global_admin.Controller;
 
 import com.middleware.global_admin.Entity.Admin;
+import com.middleware.global_admin.Exception.ResourceNotFoundException;
 import com.middleware.global_admin.Service.AdminService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
@@ -28,9 +28,10 @@ public class AdminController {
 
 
     @PostMapping(value = "/login", produces = "application/json")
-    public ResponseEntity<Map<String, Object>> loginAdmin(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Map<String, Object>> loginAdmin(@RequestBody Admin admin) {
+
         try {
-            Map<String, Object> response = adminService.loginAdmin(email, password);
+            Map<String, Object> response = adminService.loginAdmin(admin.getEmail(), admin.getPassword());
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
